@@ -6,7 +6,7 @@ abstract class AndroidLibraryConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         apply(plugin = "com.android.library")
-        //apply(plugin = "nowinandroid.android.lint")
+        apply(plugin = "newcompose.android.lint")
 
         extensions.configure<LibraryExtension> {
             configureKotlinAndroid(this)
@@ -21,6 +21,18 @@ abstract class AndroidLibraryConventionPlugin : Plugin<Project> {
             resourcePrefix =
                 path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_")
                     .lowercase() + "_"
+        }
+        extensions.configure<LibraryAndroidComponentsExtension> {
+            configurePrintApksTask(this)
+            disableUnnecessaryAndroidTests(target)
+        }
+        configureSpotlessForAndroid()
+        dependencies {
+            "androidTestImplementation"(libs.findLibrary("kotlin.test").get())
+            "testImplementation"(libs.findLibrary("kotlin.test").get())
+            "testImplementation"(libs.findLibrary("junit").get())
+
+            "implementation"(libs.findLibrary("androidx.tracing.ktx").get())
         }
     }
 }

@@ -14,6 +14,16 @@ gradlePlugin {
             implementationClass = "AndroidLibraryConventionPlugin"
         }
 
+        register("androidLint") {
+            id = libs.plugins.newcompose.android.lint.get().pluginId
+            implementationClass = "AndroidLintConventionPlugin"
+        }
+
+        register("androidApplication"){
+            id=libs.plugins.newCompose.android.application.get().pluginId
+            implementationClass="AndroidApplicationConventionPlugin"
+        }
+
     }
 
 }
