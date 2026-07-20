@@ -6,12 +6,29 @@ junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.11.0"
 activityCompose = "1.13.0"
-kotlin = "2.4.0"
+kotlin = "2.4.10"
 composeBom = "2026.06.01"
 appcompat = "1.7.1"
 material = "1.14.0"
+firebaseBom = "33.7.0"
+firebaseCrashlyticsPlugin = "3.0.7"
+firebasePerfPlugin = "2.0.2"
+androidTools = "32.3.0"
+ksp = "2.3.4"
+room = "2.8.4"
+uiTestJunit4 = "1.11.4"
+spotless = "8.8.0"
+truth = "1.4.5"
+dependencyGuard = "0.5.0"
+hilt = "2.60.1"
+androidxLintGradle = "1.0.0"
+androidDesugarJdkLibs = "2.1.5"
+
+
 
 [libraries]
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -24,17 +41,54 @@ androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graph
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+androidx-lint-gradle = { group = "androidx.lint", name = "lint-gradle", version.ref = "androidxLintGradle" }
+
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle-api", version.ref = "agp" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsPlugin" }
+firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "uiTestJunit4" }
+spotless-gradlePlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+android-lint = { id = "com.android.lint", version.ref = "agp" }
+dependencyGuard = { id = "com.dropbox.dependency-guard", version.ref = "dependencyGuard" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 
 
 # Plugins defined by this project
+newcompose-android-application = { id = "newcompose.android.application" }
 newcompose-android-library = { id = "newcompose.android.library" }
+newcompose-android-application-compose = { id = "newcompose.android.application.compose" }
+newcompose-android-application-firebase = { id = "newcompose.android.application.firebase" }
+newcompose-android-application-flavors = { id = "newcompose.android.application.flavors" }
+newcompose-android-application-jacoco = { id = "newcompose.android.application.jacoco" }
+newcompose-android-feature-impl = { id = "newcompose.android.feature.impl" }
+newcompose-android-feature-api = { id = "newcompose.android.feature.api" }
+newcompose-android-library-compose = { id = "newcompose.android.library.compose" }
+newcompose-android-library-jacoco = { id = "newcompose.android.library.jacoco" }
+newcompose-android-lint = { id = "newcompose.android.lint" }
+newcompose-android-room = { id = "newcompose.android.room" }
+newcompose-android-test = { id = "newcompose.android.test" }
+newcompose-hilt = { id = "newcompose.hilt" }
+newcompose-jvm-library = { id = "newcompose.jvm.library" }
+newcompose-root = { id = "nowinandroid.root" }
+

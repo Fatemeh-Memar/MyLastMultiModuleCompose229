@@ -1,5 +1,26 @@
 package com.example.mynewcompose
 
+import com.android.build.api.artifact.SingleArtifact
+import com.android.build.api.variant.AndroidComponentsExtension
+import com.android.build.api.variant.BuiltArtifactsLoader
+import com.android.build.api.variant.HasAndroidTest
+import org.gradle.api.DefaultTask
+import org.gradle.api.Project
+import org.gradle.api.file.Directory
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.provider.ListProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputDirectory
+import org.gradle.api.tasks.InputFiles
+import org.gradle.api.tasks.Internal
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
+import org.gradle.api.tasks.TaskAction
+import org.gradle.work.DisableCachingByDefault
+import org.gradle.kotlin.dsl.assign
+import java.io.File
+
 internal fun Project.configurePrintApksTask(extension: AndroidComponentsExtension<*, *, *>) {
     extension.onVariants { variant ->
         if (variant is HasAndroidTest) {
