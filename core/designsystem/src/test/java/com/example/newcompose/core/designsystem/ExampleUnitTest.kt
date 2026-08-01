@@ -1,4 +1,4 @@
-package com.example.core.designsystem
+package com.example.newcompose.core.designsystem
 
 import org.junit.Test
 
