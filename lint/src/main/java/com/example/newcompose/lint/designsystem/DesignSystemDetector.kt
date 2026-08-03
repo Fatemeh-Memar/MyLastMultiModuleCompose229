@@ -22,6 +22,7 @@ import com.android.tools.lint.detector.api.Detector
 import com.android.tools.lint.detector.api.Implementation
 import com.android.tools.lint.detector.api.Issue
 import com.android.tools.lint.detector.api.JavaContext
+import com.android.tools.lint.detector.api.LintFix
 import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
 import org.jetbrains.uast.UCallExpression
@@ -112,6 +113,13 @@ class DesignSystemDetector : Detector(), Detector.UastScanner {
                 node,
                 context.getLocation(node),
                 "Using $name instead of $preferredName",
+                quickfixData = LintFix.create()
+                    .name("Replace with $preferredName")
+                    .replace()
+                    .text(name)
+                    .with(preferredName)
+                    .autoFix()
+                    .build(),
             )
         }
     }
