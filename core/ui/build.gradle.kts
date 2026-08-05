@@ -1,30 +1,22 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.newcompose.android.library)
+    alias(libs.plugins.newcompose.android.library.compose)
+    alias(libs.plugins.newcompose.android.library.jacoco)
 }
-
 android {
     namespace = "com.example.core.ui"
-    compileSdk {
-        version = release(37)
-    }
-
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
 }
 
 dependencies {
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.androidx.junit)
+    api(libs.androidx.metrics)
+    //api(projects.core.analytics)  //TODO HANDLE THIS
+    api(projects.core.designsystem)
+    api(projects.core.model)
+
+    implementation(libs.androidx.browser)
+    implementation(libs.coil.kt)
+    implementation(libs.coil.kt.compose)
+
+    androidTestImplementation(libs.bundles.androidx.compose.ui.test)
+    //androidTestImplementation(projects.core.testing)  //TODO HANDLE THIS
 }
